@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Album erstellen{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        <h1>Album erstellen</h1>
+
+        {{ include('album/_form.html.twig') }}
+
+        <a href="{{ path('app_album_index') }}" class="btn btn-primary mt-3"><i class="mdi mdi-chevron-left me-1"></i>Zurück</a>
+    </div>
+{% endblock %}

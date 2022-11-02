@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ album.name }}{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        <h1 class="m-0">{{ album.name }}</h1>
+        <hr>
+        <small class="d-block text-muted">
+            <i class="mdi mdi-camera"></i>
+            {{ album.images|length }} Bilder
+            <span class="mx-1"></span>
+            <i class="mdi mdi-calendar"></i>
+            {{ album.created|date('d.m.Y | H:i:s') ~ ' Uhr' }}
+        </small>
+        <hr>
+        <div class="row">
+            {% for image in album.images %}
+                <a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-lightbox="image-preview"
+                   data-title="{{ image.name }}" style="width:150px;height:150px;overflow:hidden">
+                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.image }}"
+                         style="min-height:150px;min-width:150px">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

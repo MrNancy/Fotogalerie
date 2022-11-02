@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ album.name }}{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        {{ form(form) }}
+    </div>
+{% endblock %}

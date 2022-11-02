@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ path('app_album_index') }}" class="btn btn-primary">
+                    Alben bearbeiten
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{{ path('app_image_index') }}" class="btn btn-primary">
+                    Bilder bearbeiten
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

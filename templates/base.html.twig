@@ -1,13 +1,17 @@
+{% set route = app.request.get('_route') %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% if block('title') != '' %} » {% endif %}{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ pagename }}{% if block('title') != '' %} » {% endif %}{% block title %}{% endblock %}</title>
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
         {% endblock %}
     </head>
-    <body>
+    <body data-controller="index">
+        {% include 'misc/navbar.html.twig' %}
         {% block body %}{% endblock %}
 
         {{ encore_entry_script_tags('app') }}

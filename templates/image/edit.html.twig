@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bild bearbeiten{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        <h1>Bild bearbeiten</h1>
+
+        {{ include('image/_form.html.twig', {'button_label': 'Aktuallisieren'}) }}
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <a href="{{ path('app_image_index') }}" class="btn w-100 btn-primary"><i class="mdi mdi-chevron-left me-1"></i>Zurück</a>
+            </div>
+            <div class="col-md-6">
+                {{ include('image/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

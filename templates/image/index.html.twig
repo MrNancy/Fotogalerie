@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bilder{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        <h1>
+            Bilder
+            <a href="{{ path('app_image_new') }}" class="btn btn-primary"><i class="mdi mdi-plus me-1"></i>Neu</a>
+        </h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Album</th>
+                    <th>Name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for image in images %}
+                    <tr>
+                        <td>
+                            <a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-lightbox="image-preview"
+                               data-title="{{ image.name }}">
+                                <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.image }}"
+                                     style="max-width:50px;max-height:50px">
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            {{ image.album.name }}
+                        </td>
+                        <td class="align-middle">{{ image.name }}</td>
+                        <td class="align-middle">
+                            {% if image.updated == image.created %}
+                                <span title="Erstellungszeitpunkt">{{ image.created ? image.created|date('d.m.Y H:i:s') ~ ' Uhr' : '' }}</span>
+                            {% else %}
+                                <span title="zuletzt geändert">{{ image.updated ? image.updated|date('d.m.Y H:i:s') ~ ' Uhr' : '' }}</span>
+                                <small class="d-block text-muted"
+                                       title="Erstellungszeitpunkt">{{ image.created ? image.created|date('d.m.Y H:i:s') ~ ' Uhr' : '' }}</small>
+                            {% endif %}
+                        </td>
+                        <td class="align-middle">
+                            <a href="{{ path('app_image_show', {'id': image.id}) }}"
+                               class="btn btn-sm btn-primary mdi mdi-eye" title="Anzeigen"></a>
+                            <a href="{{ path('app_image_edit', {'id': image.id}) }}"
+                               class="btn btn-sm btn-warning mdi mdi-pen" title="Bearbeiten"></a>
+
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Keine Einträge gefunden</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

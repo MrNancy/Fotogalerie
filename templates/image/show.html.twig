@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bild{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 p-3">
+        <h1>Bild</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th></th>
+                <td class="text-center">
+                    <a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-lightbox="image-preview"
+                       data-title="{{ image.name }}">
+                        <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.image }}">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ image.image }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ image.id }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ image.slug }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ image.name }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ image.created ? image.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ image.updated ? image.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{{ path('app_image_index') }}" class="btn btn-primary w-100">Zurück</a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ path('app_image_edit', {'id': image.id}) }}" class="btn btn-primary w-100">Bearbeiten</a>
+            </div>
+            <div class="col-md-4">
+                {{ include('image/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
