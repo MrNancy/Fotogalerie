@@ -1,0 +1,16 @@
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dark-transparent">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareModalLabel">Teilen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-wrap justify-content-center gap-3">
+                <a href="mailto:?body={{ content }}" class="btn share-email mdi mdi-email"></a>
+                <a href="whatsapp://send?text={{ content }}" class="btn share-whatsapp mdi mdi-whatsapp"></a>
+                <a href="http://www.facebook.com/share.php?u={{ content }}" class="btn share-facebook mdi mdi-facebook"></a>
+                <button data-copy-to-clipboard="{{ content }}"  class="btn share-clipboard mdi mdi-content-copy"></button>
+            </div>
+        </div>
+    </div>
+</div>

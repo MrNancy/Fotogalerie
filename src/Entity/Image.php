@@ -7,13 +7,15 @@ use App\Entity\Trait\IdTrait;
 use App\Entity\Trait\SlugTrait;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\File;
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
 {
+    public const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    public const MAX_IMAGE_SIZE = '10240k';
     use IdTrait;
     use SlugTrait;
     use CreatedTrait;
@@ -21,11 +23,10 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
-
     #[ORM\Column(length: 255, nullable: false)]
     private ?string $image = '';
-
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image')]
+    #[File(maxSize: self::MAX_IMAGE_SIZE, mimeTypes: self::ALLOWED_MIME_TYPES)]
     private $imageFile = null;
 
     public function getAlbum(): ?Album

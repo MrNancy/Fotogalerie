@@ -1,0 +1,15 @@
+$icons = {
+  'whatsapp':#2CC64E,
+  'email':#565656,
+  'facebook':#1977F3,
+  'clipboard':#7b19f3
+}
+
+.share
+  for $key, $value in $icons
+    &-{$key}
+      content $key
+      background $value
+
+      &:hover
+        background darken($value, 10)

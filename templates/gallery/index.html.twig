@@ -4,7 +4,16 @@
 
 {% block body %}
     <div class="container card mt-5 p-3">
-        <h1 class="m-0">{{ album.name }}</h1>
+        <div class="d-flex justify-content-space-between align-items-center">
+            <h1 class="m-0">
+                {{ album.name }}
+            </h1>
+            {% include 'misc/share_button.html.twig' with {
+                content: absolute_url(path(
+                    app.request.attributes.get('_route'),app.request.attributes.get('_route_params')
+                ))
+            } %}
+        </div>
         <hr>
         <small class="d-block text-muted">
             <i class="mdi mdi-camera"></i>
@@ -14,14 +23,29 @@
             {{ album.created|date('d.m.Y | H:i:s') ~ ' Uhr' }}
         </small>
         <hr>
-        <div class="row">
-            {% for image in album.images %}
-                <a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-lightbox="image-preview"
-                   data-title="{{ image.name }}" style="width:150px;height:150px;overflow:hidden">
-                    <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.image }}"
-                         style="min-height:150px;min-width:150px">
-                </a>
-            {% endfor %}
+        <div class="gallery-grid" data-controller="lightbox">
+            {% if album.images|length > 0 %}
+                {% for image in album.images %}
+                    <a href="{{ vich_uploader_asset(image, 'imageFile') }}"
+                            data-gallery="gallery"
+                            class="glightbox"
+                            data-glightbox="type: image"
+                            data-title="{{ image.name }}">
+                        <img class="gallery-grid__image" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.image }}" loading="lazy">
+                    </a>
+                {% endfor %}
+            {% endif %}
+            {% if album.videos|length > 0 %}
+                {% for video in album.videos %}
+                    <a href="{{ vich_uploader_asset(video, 'videoFile') }}"
+                            data-gallery="gallery"
+                            class="glightbox"
+                            data-glightbox="type: video"
+                            data-title="{{ video.name }}">
+                        <video class="gallery-grid__video" src="{{ vich_uploader_asset(video, 'videoFile') }}" title="{{ video.video }}" controls preload="metadata"></video>
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -14,3 +14,10 @@ vich_uploader:
       namer:
         service: Vich\UploaderBundle\Naming\HashNamer
         options: { algorithm: 'sha256', length: 50 }
+    videos:
+      uri_prefix: '%app.path.videos%'
+      upload_destination: '%kernel.project_dir%/public%app.path.videos%'
+      delete_on_remove: true
+      namer:
+        service: Vich\UploaderBundle\Naming\HashNamer
+        options: { algorithm: 'sha256', length: 50 }

@@ -1,0 +1,33 @@
+$buttonSize = 55
+$spacerSize = 5px
+#glightbox-body
+  .gnext,
+  .gprev,
+  .gclose,
+  .gshare
+    position absolute
+    width unit($buttonSize, px)
+    height unit($buttonSize, px)
+
+    i
+      font-size unit($buttonSize/ 2, px)
+
+  .gnext,
+  .gprev
+    top 50%
+    bottom 50%
+
+  .gnext
+    right $spacerSize
+
+  .gprev
+    left $spacerSize
+
+  .gclose
+    top $spacerSize
+    right $spacerSize
+
+  .gshare
+    top 5px
+    right unit($buttonSize + ($spacerSize* 2), px)
+    border none

@@ -1,0 +1,19 @@
+$imageSize = 150px
+
+.gallery-grid
+  display grid
+  grid-template-columns repeat(auto-fill, $imageSize)
+  gap 1rem
+  justify-content center
+  a
+    width $imageSize
+    height $imageSize
+
+  &__video,
+  &__image
+    object-fit cover
+    width $imageSize
+    height $imageSize
+
+  &__video
+    pointer-events none
